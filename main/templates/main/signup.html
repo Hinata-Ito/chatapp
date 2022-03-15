@@ -1,0 +1,21 @@
+{% extends "main/base.html" %}
+{% load static %} {# これ必要 #} {# クラスの継承と同じように、オーバーライドしていくイメージ #}
+
+{% block extra_style %}
+<link rel="stylesheet" href="{% static 'main/css/signup.css' %}"> {# 追加のスタイルを指定 #}
+{% endblock %}
+
+{% block header_title %}会員登録{% endblock %}
+
+{% block content %} 
+{# signup 処理部分 #}
+<form action="{% url 'signup' %}" method="POST" class="signup-form">
+    {% csrf_token %}
+    <table>
+        {{ form.as_table }}
+    </table>
+    <button type="submit" class="signup-form__submit">送信</button>
+</form>
+{% endblock %}
+
+{% block footer %}{% endblock %}
